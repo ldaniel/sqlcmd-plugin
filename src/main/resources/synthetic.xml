@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS
+FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
+-->
+<synthetic xmlns="http://www.xebialabs.com/deployit/synthetic" 
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+           xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+    <type type="sql.SqlCmd" 
+          deployable-type="sql.SqlCmdScriptsSpec"
+          extends="powershell.ExtensiblePowerShellDeployedArtifact" 
+          container-type="sql.SqlCmdDatabaseSpec"          
+          description="SQL scripts">
+               
+        <generate-deployable type="sql.SqlCmdScriptsSpec" 
+                             description="SQL scripts to be deployed into a database using sqlcmd utility" 
+                             extends="powershell.BasePowerShellDeployableFileArtifact"/>
+        
+        <!-- hidden -->
+        <property name="createScript" default="sqlcmd/deploy-script.ps1" hidden="true"/>
+        <property name="createOrder" kind="integer" default="54" hidden="true"/>
+        <property name="createVerb" default="Copy" hidden="true"/>
+    </type>
+    
+    <type type="sql.SqlCmdDatabaseSpec" 
+          extends="powershell.BasePowerShellContainer" 
+          description="Target database configuration (remote)">
+      
+        <!-- public -->
+        <property name="InstanceName" description="SQL Server instance name" required="true"/> 
+        <property name="DatabaseName" description="SQL Server database name" required="true"/>        
+        <property name="Username" description="Username to connect at SQL Server instance" required="true"/>
+        <property name="Password" description="Password to connect at SQL Server instance" required="true" password="true" />
+	<property name="TempPath" description="Temporary path to decompress and run the scripts" required="true"/>        
+    </type>
+</synthetic>
