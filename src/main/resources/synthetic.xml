@@ -19,6 +19,7 @@ FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALA
         
         <!-- hidden -->
         <property name="createScript" default="sqlcmd/deploy-script.ps1" hidden="true"/>
+        <property name="destroyScript" default="sqlcmd/destroy-script.ps1" hidden="true"/>
         <property name="createOrder" kind="integer" default="54" hidden="true"/>
         <property name="createVerb" default="Copy" hidden="true"/>
     </type>
@@ -32,6 +33,9 @@ FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALA
         <property name="DatabaseName" description="SQL Server database name" required="true"/>        
         <property name="Username" description="Username to connect at SQL Server instance" required="true"/>
         <property name="Password" description="Password to connect at SQL Server instance" required="true" password="true" />
-	<property name="TempPath" description="Temporary path to decompress and run the scripts" required="true"/>        
+	    <property name="TempPath" description="Temporary path to decompress and run the scripts" required="true"/>
+		
+		<!-- hidden -->
+		<method name="checkcontainer" label="Check folders" description="Check folders creation on server" script="sqlcmd/check-container.ps1"/>
     </type>
 </synthetic>
