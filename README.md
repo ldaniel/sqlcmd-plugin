@@ -5,3 +5,4 @@ The SQLCMD plugin is an alternative to the standard XL Deploy database plugin th
 
 * Deploys SQL scripts based on T-SQL to a remote Microsoft SQL Server instance
 * Creates an specific container to configure the remot MSSQL instance
+* Creates an administrative task to check folders creation on target server
